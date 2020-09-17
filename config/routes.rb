@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   root 'home#top'
   get 'home/about'
   resources :users, only: [:show,:index,:edit,:update]
-  resources :books
+  resources :books do
+  #いいね機能
+  resource :favorites, only: [:create, :destroy]
+  #コメント機能
+  resources :book_comments, only: [:create, :destroy]
+  end
 
 end
